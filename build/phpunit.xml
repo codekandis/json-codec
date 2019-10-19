@@ -9,6 +9,7 @@
 	cacheResult="false">
 	<testsuites>
 		<testsuite name="codekandis/json-codec">
+			<directory suffix="Test.php">../tests/UnitTests</directory>
 		</testsuite>
 	</testsuites>
 	<filter>
