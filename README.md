@@ -11,6 +11,9 @@ With the JSON codec you will be able to encode into and decode from JSON data in
 
 * [Installation](#installation)
 * [How to use](#how-to-use)
+  * [Encoding values](#encoding-values)
+  * [Decoding values](#decoding-values)
+* [Differences to PHP's JSON functions](#differences-to-phps-json-functions)
 
 ## Installation
 
