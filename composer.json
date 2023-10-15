@@ -1,13 +1,14 @@
 {
 	"name": "codekandis/json-codec",
-	"description": "This library provides a codec to encode into and decode from JSON in an object oriented way.",
+	"description": "With the JSON codec you will be able to encode into and decode from JSON data in an object oriented way. It wraps PHP's functions `json_encode()` and `json_decode()`.",
+	"version": "dev-development",
 	"keywords": [
 		"php",
 		"json codec",
 		"json",
 		"codec",
-		"encode",
-		"decode"
+		"encoder",
+		"decoder"
 	],
 	"minimum-stability": "stable",
 	"prefer-stable": true,
@@ -27,13 +28,15 @@
 		"source": "https://github.com/codekandis/json-codec/tree/master"
 	},
 	"require": {
-		"php": "^7.4",
-		"codekandis/phlags": "^3",
-		"codekandis/json-error-handler": "^2"
+		"php": ">=8.3",
+		"ext-json": "*",
+		"codekandis/json-error-handler": "^3.0.0",
+		"codekandis/types": "^1.0.0"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-master",
-		"codekandis/phpunit": "^3"
+		"codekandis/phpunit": "^5.0.0",
+		"rector/rector": "^1.0.5"
 	},
 	"autoload": {
 		"psr-4": {
@@ -44,13 +47,12 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
+			"CodeKandis\\JsonCodec\\Build\\": [
+				"build/"
+			],
 			"CodeKandis\\JsonCodec\\Tests\\": [
 				"tests/"
 			]
 		}
-	},
-	"scripts": {
-		"post-update-cmd": [
-		]
 	}
 }
