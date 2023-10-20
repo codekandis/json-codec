@@ -2,6 +2,7 @@
 namespace CodeKandis\JsonCodec;
 
 use CodeKandis\JsonErrorHandler\JsonErrorHandler;
+use CodeKandis\JsonErrorHandler\JsonErrorHandlerInterface;
 use Override;
 use function json_decode;
 
@@ -12,6 +13,12 @@ use function json_decode;
  */
 class JsonDecoder implements JsonDecoderInterface
 {
+	/**
+	 * Stores the JSON error handler.
+	 * @var JsonErrorHandlerInterface
+	 */
+	private JsonErrorHandlerInterface $errorHandler;
+
 	/**
 	 * {@inheritdoc}
 	 */
@@ -24,8 +31,9 @@ class JsonDecoder implements JsonDecoderInterface
 			$recursionDepth,
 			$options ?? 0
 		);
-		( new JsonErrorHandler() )
-			->handle();
+
+		$this->errorHandler ??= new JsonErrorHandler();
+		$this->errorHandler->handle();
 
 		return $decodedValue;
 	}

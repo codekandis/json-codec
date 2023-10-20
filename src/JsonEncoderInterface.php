@@ -1,7 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\JsonCodec;
 
-use JsonException;
+use CodeKandis\JsonErrorHandler\JsonException;
 
 /**
  * Represents the interface of all JSON encoders.
