@@ -14,7 +14,7 @@ class JsonEncoder implements JsonEncoderInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function encode( $value, ?JsonEncoderOptions $options = null ): string
+	public function encode( mixed $value, ?JsonEncoderOptions $options = null ): string
 	{
 		$preparedOptions = $options ?? new JsonEncoderOptions();
 		$encodedValue    = json_encode( $value, $preparedOptions() );
