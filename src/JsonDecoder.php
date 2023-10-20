@@ -16,10 +16,10 @@ class JsonDecoder implements JsonDecoderInterface
 	 * {@inheritdoc}
 	 */
 	#[Override]
-	public function decode( string $value, ?JsonDecoderOptions $options = null, int $depth = 512 ): mixed
+	public function decode( string $value, ?JsonDecoderOptions $options = null, int $recursionDepth = 512 ): mixed
 	{
 		$preparedOptions = $options ?? new JsonDecoderOptions();
-		$decodedValue    = json_decode( $value, null, $depth, $preparedOptions() );
+		$decodedValue    = json_decode( $value, null, $recursionDepth, $preparedOptions() );
 		( new JsonErrorHandler() )
 			->handle();
 
