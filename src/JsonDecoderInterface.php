@@ -4,7 +4,7 @@ namespace CodeKandis\JsonCodec;
 use CodeKandis\JsonErrorHandler\JsonException;
 
 /**
- * Represents the interface of all JSON decoders.
+ * Represents the interface of any JSON decoder.
  * @package codekandis/json-codec
  * @author Christian Ramelow <info@codekandis.net>
  */

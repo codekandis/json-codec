@@ -16,12 +16,11 @@ class JsonDecoder extends BaseObject implements JsonDecoderInterface
 {
 	/**
 	 * Stores the JSON error handler.
-	 * @var JsonErrorHandlerInterface
 	 */
 	private JsonErrorHandlerInterface $errorHandler;
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	#[Override]
 	public function decode( string $value, ?int $options = null, int $recursionDepth = 512 ): mixed

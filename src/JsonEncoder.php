@@ -16,12 +16,11 @@ class JsonEncoder extends BaseObject implements JsonEncoderInterface
 {
 	/**
 	 * Stores the JSON error handler.
-	 * @var JsonErrorHandlerInterface
 	 */
 	private JsonErrorHandlerInterface $errorHandler;
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	#[Override]
 	public function encode( mixed $value, ?int $options = null ): string
