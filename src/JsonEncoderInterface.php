@@ -17,5 +17,5 @@ interface JsonEncoderInterface
 	 * @return string The encoded JSON string.
 	 * @throws JsonException An error occurred during encoding.
 	 */
-	public function encode( $value, ?JsonEncoderOptions $options = null ): string;
+	public function encode( mixed $value, ?JsonEncoderOptions $options = null ): string;
 }
