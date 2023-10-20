@@ -14,11 +14,13 @@ class JsonDecoderOptions extends AbstractFlagable
 {
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-object-as-array
+	 * @var int
 	 */
-	public const OBJECT_AS_ARRAY = JSON_OBJECT_AS_ARRAY;
+	public const int OBJECT_AS_ARRAY = JSON_OBJECT_AS_ARRAY;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-bigint-as-string
+	 * @var int
 	 */
-	public const BIGINT_AS_STRING = JSON_BIGINT_AS_STRING;
+	public const int BIGINT_AS_STRING = JSON_BIGINT_AS_STRING;
 }

@@ -24,61 +24,73 @@ class JsonEncoderOptions extends AbstractFlagable
 {
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-hex-tag
+	 * @var int
 	 */
-	public const HEX_TAG = JSON_HEX_TAG;
+	public const int HEX_TAG = JSON_HEX_TAG;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-hex-amp
+	 * @var int
 	 */
-	public const HEX_AMP = JSON_HEX_AMP;
+	public const int HEX_AMP = JSON_HEX_AMP;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-hex-apos
+	 * @var int
 	 */
-	public const HEX_APOS = JSON_HEX_APOS;
+	public const int HEX_APOS = JSON_HEX_APOS;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-hex-quot
+	 * @var int
 	 */
-	public const HEX_QUOT = JSON_HEX_QUOT;
+	public const int HEX_QUOT = JSON_HEX_QUOT;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-force-object
+	 * @var int
 	 */
-	public const FORCE_OBJECT = JSON_FORCE_OBJECT;
+	public const int FORCE_OBJECT = JSON_FORCE_OBJECT;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-numeric-check
+	 * @var int
 	 */
-	public const NUMERIC_CHECK = JSON_NUMERIC_CHECK;
+	public const int NUMERIC_CHECK = JSON_NUMERIC_CHECK;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-unescaped-slashes
+	 * @var int
 	 */
-	public const UNESCAPED_SLASHES = JSON_UNESCAPED_SLASHES;
+	public const int UNESCAPED_SLASHES = JSON_UNESCAPED_SLASHES;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-pretty-print
+	 * @var int
 	 */
-	public const PRETTY_PRINT = JSON_PRETTY_PRINT;
+	public const int PRETTY_PRINT = JSON_PRETTY_PRINT;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-unescaped-unicode
+	 * @var int
 	 */
-	public const UNESCAPED_UNICODE = JSON_UNESCAPED_UNICODE;
+	public const int UNESCAPED_UNICODE = JSON_UNESCAPED_UNICODE;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-partial-output-on-error
+	 * @var int
 	 */
-	public const PARTIAL_OUTPUT_ON_ERROR = JSON_PARTIAL_OUTPUT_ON_ERROR;
+	public const int PARTIAL_OUTPUT_ON_ERROR = JSON_PARTIAL_OUTPUT_ON_ERROR;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-preserve-zero-fraction
+	 * @var int
 	 */
-	public const PRESERVE_ZERO_FRACTION = JSON_PRESERVE_ZERO_FRACTION;
+	public const int PRESERVE_ZERO_FRACTION = JSON_PRESERVE_ZERO_FRACTION;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-unescaped-line-terminators
+	 * @var int
 	 */
-	public const UNESCAPED_LINE_TERMINATORS = JSON_UNESCAPED_LINE_TERMINATORS;
+	public const int UNESCAPED_LINE_TERMINATORS = JSON_UNESCAPED_LINE_TERMINATORS;
 }

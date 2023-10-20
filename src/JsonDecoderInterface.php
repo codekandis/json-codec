@@ -18,5 +18,5 @@ interface JsonDecoderInterface
 	 * @return mixed The decoded value.
 	 * @throws JsonException An error occurred during decoding.
 	 */
-	public function decode( string $value, ?JsonDecoderOptions $options = null, int $depth = 512 );
+	public function decode( string $value, ?JsonDecoderOptions $options = null, int $depth = 512 ): mixed;
 }

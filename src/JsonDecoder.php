@@ -14,7 +14,7 @@ class JsonDecoder implements JsonDecoderInterface
 	/**
 	 * {@inheritdoc}
 	 */
-	public function decode( string $value, ?JsonDecoderOptions $options = null, int $depth = 512 )
+	public function decode( string $value, ?JsonDecoderOptions $options = null, int $depth = 512 ): mixed
 	{
 		$preparedOptions = $options ?? new JsonDecoderOptions();
 		$decodedValue    = json_decode( $value, null, $depth, $preparedOptions() );
