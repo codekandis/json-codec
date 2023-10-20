@@ -20,7 +20,7 @@ class JsonEncoder implements JsonEncoderInterface
 	private JsonErrorHandlerInterface $errorHandler;
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	#[Override]
 	public function encode( mixed $value, ?int $options = null ): string

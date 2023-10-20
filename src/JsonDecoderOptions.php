@@ -5,7 +5,7 @@ use const JSON_BIGINT_AS_STRING;
 use const JSON_OBJECT_AS_ARRAY;
 
 /**
- * Represents the available options for decoding a value from JSON.
+ * Represents the available options to decode a value from a JSON string.
  * @package codekandis/json-codec
  * @author Christian Ramelow <info@codekandis.net>
  */

@@ -15,7 +15,7 @@ use const JSON_UNESCAPED_SLASHES;
 use const JSON_UNESCAPED_UNICODE;
 
 /**
- * Represents the available options for encoding a value into JSON.
+ * Represents the available options to encode a value into a JSON string.
  * @package codekandis/json-codec
  * @author Christian Ramelow <info@codekandis.net>
  */
