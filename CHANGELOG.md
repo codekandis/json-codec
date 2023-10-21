@@ -2,10 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [keep a changelog][xtlink-keep-a-changelog]
+The format is based on [keep a changelog 1.1.0][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
-## [3.0.0] - 2023-10-25
+## [3.0.0] - 2024-07-14
 
 ### Fixed
 
@@ -16,36 +16,42 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
 ### Changed
 
 * composer package
-  * description
-  * keywords
-  * require
-    * `php` [>=8.2]
-  * require-dev
-    * `codekandis/phpunit` [^5.0.0]
-* added
-  * version
-  * require-dev
-    * `rector/rector` [^0.18.5]
-  * autoload-dev
-    * psr-4
-      * `CodeKandis\JsonCodec\Build\`
-        * `build/`
+  * changed
+    * description
+    * keywords
+    * require
+      * `php` [>=8.3]
+    * require-dev
+      * `codekandis/phpunit` [^5.0.0]
+  * added
+    * version
+    * require
+      * `ext-json` [*]
+    * require-dev
+      * `rector/rector` [^1.0.5]
+    * autoload-dev
+      * psr-4
+        * `CodeKandis\JsonCodec\Build\`
+          * `build/`
 * PHPUnit tests
   * configuration
   * externalized data providers
 * exception handling
 * `CODE_OF_CONDUCT.md`
 * `README.md`
-  * PHP version `8.2`
+  * PHP version `8.3`
+  * documentation
 
 ### Added
 
 * type hints
+* `Override attributes`
 * rector
   * configuration script
   * shell script
+* `.gitattributes` to ignore dev-assets
 
-[3.0.0]: https://github.com/codekandis/json-codec/compare/2.0.1..3.0.0
+[3.0.0]: https://github.com/codekandis/json-codec/compare/2.0.1...3.0.0
 
 ---
 ## [2.0.1] - 2021-01-21
@@ -54,7 +60,7 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
 
 * `README.md`
 
-[2.0.1]: https://github.com/codekandis/json-codec/compare/2.0.0..2.0.1
+[2.0.1]: https://github.com/codekandis/json-codec/compare/2.0.0...2.0.1
 
 ---
 ## [2.0.0] - 2021-01-17
@@ -73,7 +79,7 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
   * added
     * `codekandis/phpunit` [^3]
 
-[2.0.0]: https://github.com/codekandis/json-codec/compare/1.0.0..2.0.0
+[2.0.0]: https://github.com/codekandis/json-codec/compare/1.0.0...2.0.0
 
 ---
 ## [1.0.0] - 2019-08-07
@@ -92,5 +98,5 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
 
 
 
-[xtlink-keep-a-changelog]: http://keepachangelog.com/en/1.0.0/
+[xtlink-keep-a-changelog]: http://keepachangelog.com/en/1.1.0/
 [xtlink-semantic-versioning]: http://semver.org/spec/v2.0.0.html

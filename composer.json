@@ -1,7 +1,7 @@
 {
 	"name": "codekandis/json-codec",
 	"description": "With the JSON codec you will be able to encode into and decode from JSON data in an object oriented way. It wraps PHP's functions `json_encode()` and `json_decode()`.",
-	"version": "dev-development",
+	"version": "3.0.0",
 	"keywords": [
 		"php",
 		"json codec",
