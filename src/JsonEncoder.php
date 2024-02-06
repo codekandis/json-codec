@@ -2,6 +2,7 @@
 namespace CodeKandis\JsonCodec;
 
 use CodeKandis\JsonErrorHandler\JsonErrorHandler;
+use Override;
 use function json_encode;
 
 /**
@@ -14,6 +15,7 @@ class JsonEncoder implements JsonEncoderInterface
 	/**
 	 * {@inheritdoc}
 	 */
+	#[Override]
 	public function encode( mixed $value, ?JsonEncoderOptions $options = null ): string
 	{
 		$preparedOptions = $options ?? new JsonEncoderOptions();
