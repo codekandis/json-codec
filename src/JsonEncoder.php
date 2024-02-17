@@ -16,10 +16,12 @@ class JsonEncoder implements JsonEncoderInterface
 	 * {@inheritdoc}
 	 */
 	#[Override]
-	public function encode( mixed $value, ?JsonEncoderOptions $options = null ): string
+	public function encode( mixed $value, ?int $options = null ): string
 	{
-		$preparedOptions = $options ?? new JsonEncoderOptions();
-		$encodedValue    = json_encode( $value, $preparedOptions() );
+		$encodedValue = json_encode(
+			$value,
+			$options ?? 0
+		);
 		( new JsonErrorHandler() )
 			->handle();
 
