@@ -1,10 +1,10 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\JsonCodec;
 
-use JsonException;
+use CodeKandis\JsonErrorHandler\JsonException;
 
 /**
- * Represents the interface of all JSON decoders.
+ * Represents the interface of any JSON decoder.
  * @package codekandis/json-codec
  * @author Christian Ramelow <info@codekandis.net>
  */
@@ -13,10 +13,10 @@ interface JsonDecoderInterface
 	/**
 	 * Decodes a value from a JSON string.
 	 * @param string $value The JSON string to decode.
-	 * @param ?JsonDecoderOptions $options The decoding options.
-	 * @param int $depth The recursion depth.
+	 * @param ?int $options The decoding options.
+	 * @param int $recursionDepth The recursion depth.
 	 * @return mixed The decoded value.
 	 * @throws JsonException An error occurred during decoding.
 	 */
-	public function decode( string $value, ?JsonDecoderOptions $options = null, int $depth = 512 );
+	public function decode( string $value, ?int $options = null, int $recursionDepth = 512 ): mixed;
 }
