@@ -1,7 +1,6 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\JsonCodec;
 
-use CodeKandis\Phlags\AbstractFlagable;
 use const JSON_BIGINT_AS_STRING;
 use const JSON_OBJECT_AS_ARRAY;
 
@@ -10,7 +9,7 @@ use const JSON_OBJECT_AS_ARRAY;
  * @package codekandis/json-codec
  * @author Christian Ramelow <info@codekandis.net>
  */
-class JsonDecoderOptions extends AbstractFlagable
+abstract class JsonDecoderOptions
 {
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-object-as-array

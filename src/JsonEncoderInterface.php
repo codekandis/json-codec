@@ -13,9 +13,9 @@ interface JsonEncoderInterface
 	/**
 	 * Encodes a value into a JSON string.
 	 * @param mixed $value The value to encode.
-	 * @param ?JsonEncoderOptions $options The encoding options.
+	 * @param ?int $options The encoding options.
 	 * @return string The encoded JSON string.
 	 * @throws JsonException An error occurred during encoding.
 	 */
-	public function encode( mixed $value, ?JsonEncoderOptions $options = null ): string;
+	public function encode( mixed $value, ?int $options = null ): string;
 }

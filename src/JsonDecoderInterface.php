@@ -13,10 +13,10 @@ interface JsonDecoderInterface
 	/**
 	 * Decodes a value from a JSON string.
 	 * @param string $value The JSON string to decode.
-	 * @param ?JsonDecoderOptions $options The decoding options.
+	 * @param ?int $options The decoding options.
 	 * @param int $recursionDepth The recursion depth.
 	 * @return mixed The decoded value.
 	 * @throws JsonException An error occurred during decoding.
 	 */
-	public function decode( string $value, ?JsonDecoderOptions $options = null, int $recursionDepth = 512 ): mixed;
+	public function decode( string $value, ?int $options = null, int $recursionDepth = 512 ): mixed;
 }
