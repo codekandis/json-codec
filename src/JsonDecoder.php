@@ -3,6 +3,7 @@ namespace CodeKandis\JsonCodec;
 
 use CodeKandis\JsonErrorHandler\JsonErrorHandler;
 use CodeKandis\JsonErrorHandler\JsonErrorHandlerInterface;
+use CodeKandis\Types\BaseObject;
 use Override;
 use function json_decode;
 
@@ -11,7 +12,7 @@ use function json_decode;
  * @package codekandis/json-codec
  * @author Christian Ramelow <info@codekandis.net>
  */
-class JsonDecoder implements JsonDecoderInterface
+class JsonDecoder extends BaseObject implements JsonDecoderInterface
 {
 	/**
 	 * Stores the JSON error handler.

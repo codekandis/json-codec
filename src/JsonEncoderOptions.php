@@ -1,6 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\JsonCodec;
 
+use CodeKandis\Types\BaseObject;
 use const JSON_FORCE_OBJECT;
 use const JSON_HEX_AMP;
 use const JSON_HEX_APOS;
@@ -19,7 +20,7 @@ use const JSON_UNESCAPED_UNICODE;
  * @package codekandis/json-codec
  * @author Christian Ramelow <info@codekandis.net>
  */
-abstract class JsonEncoderOptions
+abstract class JsonEncoderOptions extends BaseObject implements JsonEncoderOptionsInterface
 {
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-hex-tag
