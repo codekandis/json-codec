@@ -2,6 +2,9 @@
 namespace CodeKandis\JsonCodec;
 
 use CodeKandis\JsonErrorHandler\JsonErrorHandler;
+use CodeKandis\JsonErrorHandler\JsonErrorHandlerInterface;
+use CodeKandis\Types\BaseObject;
+use Override;
 use function json_encode;
 
 /**
@@ -9,17 +12,26 @@ use function json_encode;
  * @package codekandis/json-codec
  * @author Christian Ramelow <info@codekandis.net>
  */
-class JsonEncoder implements JsonEncoderInterface
+class JsonEncoder extends BaseObject implements JsonEncoderInterface
 {
 	/**
-	 * {@inheritdoc}
+	 * Stores the JSON error handler.
 	 */
-	public function encode( $value, ?JsonEncoderOptions $options = null ): string
+	private JsonErrorHandlerInterface $errorHandler;
+
+	/**
+	 * @inheritDoc
+	 */
+	#[Override]
+	public function encode( mixed $value, ?int $options = null ): string
 	{
-		$preparedOptions = $options ?? new JsonEncoderOptions();
-		$encodedValue    = json_encode( $value, $preparedOptions() );
-		( new JsonErrorHandler() )
-			->handle();
+		$encodedValue = json_encode(
+			$value,
+			$options ?? 0
+		);
+
+		$this->errorHandler ??= new JsonErrorHandler();
+		$this->errorHandler->handle();
 
 		return $encodedValue;
 	}

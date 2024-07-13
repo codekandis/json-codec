@@ -1,71 +1,66 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\JsonCodec\Tests\UnitTests;
 
-use ArrayIterator;
 use CodeKandis\JsonCodec\JsonDecoderInterface;
-use CodeKandis\JsonCodec\JsonDecoderOptions;
-use CodeKandis\JsonCodec\Tests\DataProviders\JsonDecoderInterfaceTest\JsonDecoderWithInvalidValuesDataProvider;
-use CodeKandis\JsonCodec\Tests\DataProviders\JsonDecoderInterfaceTest\JsonDecoderWithValidValuesDataProvider;
-use PHPUnit\Framework\TestCase;
+use CodeKandis\JsonCodec\Tests\DataProviders\UnitTests\JsonDecoderInterfaceTest\JsonDecodersWithValidValueDecoderOptionsRecursionDepthAndExpectedDecodedValueDataProvider;
+use CodeKandis\JsonCodec\Tests\DataProviders\UnitTests\JsonDecoderInterfaceTest\JsonDecodersWithValueDecoderOptionsRecursionDepthExpectedThrowableClassNameExpectedThrowableCodeAndExpectedThrowableMessageDataProvider;
+use CodeKandis\JsonErrorHandler\JsonExceptionInterface;
+use CodeKandis\PhpUnit\TestCase;
+use PHPUnit\Framework\Attributes\DataProviderExternal;
+use Throwable;
 
 /**
- * Represents the test case to test objects against the `JsonDecoderInterface`.
+ * Represents the test case of `CodeKandis\JsonCodec\JsonDecoderInterface`.
  * @package codekandis/json-codec
  * @author Christian Ramelow <info@codekandis.net>
  */
 class JsonDecoderInterfaceTest extends TestCase
 {
 	/**
-	 * Provides inititated JSON decoders with valid values and options.
-	 * @return ArrayIterator The inititated JSON decoders with valid values and options.
+	 * Tests if the method `JsonDecoderInterface::decode()` throws a `CodeKandis\JsonErrorHandler\JsonException` if a JSON error occurred during decoding.
+	 * @param JsonDecoderInterface $jsonDecoder The JSON decoder to test.
+	 * @param string $value The value to pass.
+	 * @param ?int $decoderOptions The decoder options to pass.
+	 * @param int $recursionDepth The recursion depth to pass.
+	 * @param string $expectedThrowableClassName The class name of the expected throwable.
+	 * @param int $expectedThrowableCode The code of the expected throwable.
+	 * @param string $expectedThrowableMessage The message of the expected throwable.
 	 */
-	public function jsonDecoderWithValidValuesDataProvider(): ArrayIterator
+	#[DataProviderExternal( JsonDecodersWithValueDecoderOptionsRecursionDepthExpectedThrowableClassNameExpectedThrowableCodeAndExpectedThrowableMessageDataProvider::class, 'provideData' )]
+	public function testIfMethodDecodeThrowsJsonExceptionInterfaceOnJsonError( JsonDecoderInterface $jsonDecoder, string $value, ?int $decoderOptions, int $recursionDepth, string $expectedThrowableClassName, int $expectedThrowableCode, string $expectedThrowableMessage ): void
 	{
-		return new JsonDecoderWithValidValuesDataProvider();
+		try
+		{
+			$jsonDecoder->decode( $value, $decoderOptions, $recursionDepth );
+		}
+		catch ( Throwable $throwable )
+		{
+			static::assertInstanceOf( JsonExceptionInterface::class, $throwable );
+			static::assertInstanceOf( $expectedThrowableClassName, $throwable );
+			static::assertSame(
+				$expectedThrowableCode,
+				$throwable->getCode()
+			);
+			static::assertSame(
+				$expectedThrowableMessage,
+				$throwable->getMessage()
+			);
+		}
 	}
 
 	/**
-	 * Tests if `JsonDecoderInterface::decode()` decodes correctly.
+	 * Tests if the method `JsonDecoderInterface::decode()` decodes Correctly.
 	 * @param JsonDecoderInterface $jsonDecoder The JSON decoder to test.
-	 * @param mixed $value The value to decode.
-	 * @param ?JsonDecoderOptions $decoderOptions The decoding options of the encoder.
-	 * @param int $depth The recursion depth.
+	 * @param string $validValue The valid value to pass.
+	 * @param ?int $decoderOptions The decoder options to pass.
+	 * @param int $recursionDepth The recursion depth to pass.
 	 * @param mixed $expectedDecodedValue The expected decoded value.
-	 * @dataProvider jsonDecoderWithValidValuesDataProvider
 	 */
-	public function testDecodeDecodesCorrectly( JsonDecoderInterface $jsonDecoder, string $value, ?JsonDecoderOptions $decoderOptions, int $depth, $expectedDecodedValue ): void
+	#[DataProviderExternal( JsonDecodersWithValidValueDecoderOptionsRecursionDepthAndExpectedDecodedValueDataProvider::class, 'provideData' )]
+	public function testIfMethodDecodeDecodesCorrectly( JsonDecoderInterface $jsonDecoder, string $validValue, ?int $decoderOptions, int $recursionDepth, mixed $expectedDecodedValue ): void
 	{
-		$resultedDecodedValue = $jsonDecoder->decode( $value, $decoderOptions, $depth );
+		$resultedDecodedValue = $jsonDecoder->decode( $validValue, $decoderOptions, $recursionDepth );
 
-		$this->assertEquals( $expectedDecodedValue, $resultedDecodedValue );
-	}
-
-	/**
-	 * Provides inititated JSON decoders with invalid values, options and expected exceptions.
-	 * @return ArrayIterator The inititated JSON decoders with invalid values, options and expected exceptions.
-	 */
-	public function jsonDecoderWithInvalidValuesDataProvider(): ArrayIterator
-	{
-		return new JsonDecoderWithInvalidValuesDataProvider();
-	}
-
-	/**
-	 * Tests if `JsonDecoderInterface::decode()` throws an exception if an error occurred during decoding.
-	 * @param JsonDecoderInterface $jsonDecoder The JSON decoder to test.
-	 * @param string $value The value to decode.
-	 * @param ?JsonDecoderOptions $decoderOptions The decoding options of the decoder.
-	 * @param int $depth The recursion depth.
-	 * @param string $expectedExceptionClassName The class name of the expected exception.
-	 * @param int $expectedExceptionCode The error code of the expected exception.
-	 * @param string $expectedExceptionMessage The error message of the expected exception.
-	 * @dataProvider jsonDecoderWithInvalidValuesDataProvider
-	 */
-	public function testDecodeThrowsExceptionOnError( JsonDecoderInterface $jsonDecoder, string $value, ?JsonDecoderOptions $decoderOptions, int $depth, string $expectedExceptionClassName, int $expectedExceptionCode, $expectedExceptionMessage ): void
-	{
-		$this->expectException( $expectedExceptionClassName );
-		$this->expectExceptionCode( $expectedExceptionCode );
-		$this->expectExceptionMessage( $expectedExceptionMessage );
-
-		$jsonDecoder->decode( $value, $decoderOptions, $depth );
+		static::assertEquals( $expectedDecodedValue, $resultedDecodedValue );
 	}
 }

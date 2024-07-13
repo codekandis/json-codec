@@ -1,69 +1,64 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\JsonCodec\Tests\UnitTests;
 
-use ArrayIterator;
 use CodeKandis\JsonCodec\JsonEncoderInterface;
-use CodeKandis\JsonCodec\JsonEncoderOptions;
-use CodeKandis\JsonCodec\Tests\DataProviders\JsonEncoderInterfaceTest\JsonEncoderWithInvalidValuesDataProvider;
-use CodeKandis\JsonCodec\Tests\DataProviders\JsonEncoderInterfaceTest\JsonEncoderWithValidValuesDataProvider;
-use PHPUnit\Framework\TestCase;
+use CodeKandis\JsonCodec\Tests\DataProviders\UnitTests\JsonEncoderInterfaceTest\JsonEncodersWithInvalidValueEncoderOptionsExpectedThrowableClassNameExpectedThrowableCodeAndExpectedThrowableMessageDataProvider;
+use CodeKandis\JsonCodec\Tests\DataProviders\UnitTests\JsonEncoderInterfaceTest\JsonEncodersWithValidValueEncoderOptionsAndExpectedEncodedValueDataProvider;
+use CodeKandis\JsonErrorHandler\JsonExceptionInterface;
+use CodeKandis\PhpUnit\TestCase;
+use PHPUnit\Framework\Attributes\DataProviderExternal;
+use Throwable;
 
 /**
- * Represents the test case to test objects against the `JsonEncoderInterface`.
+ * Represents the test case of `CodeKandis\JsonCodec\JsonEncoderInterface`.
  * @package codekandis/json-codec
  * @author Christian Ramelow <info@codekandis.net>
  */
 class JsonEncoderInterfaceTest extends TestCase
 {
 	/**
-	 * Provides inititated JSON encoders with valid values and options.
-	 * @return ArrayIterator The inititated JSON encoders with valid values and options.
+	 * Tests if the method `JsonEncoderInterface::encode()` throws a `CodeKandis\JsonErrorHandler\JsonException` if a JSON error occurred during encoding.
+	 * @param JsonEncoderInterface $jsonEncoder The JSON encoder to test.
+	 * @param mixed $invalidValue The invalid value to pass.
+	 * @param ?int $encoderOptions The encoder options to pass.
+	 * @param string $expectedThrowableClassName The class name of the expected throwable.
+	 * @param int $expectedThrowableCode The code of the expected throwable.
+	 * @param string $expectedThrowableMessage The message of the expected throwable.
 	 */
-	public function jsonEncoderWithValidValuesDataProvider(): ArrayIterator
+	#[DataProviderExternal( JsonEncodersWithInvalidValueEncoderOptionsExpectedThrowableClassNameExpectedThrowableCodeAndExpectedThrowableMessageDataProvider::class, 'provideData' )]
+	public function testIfMethodEncodeThrowsJsonExceptionInterfaceOnJsonError( JsonEncoderInterface $jsonEncoder, mixed $invalidValue, ?int $encoderOptions, string $expectedThrowableClassName, int $expectedThrowableCode, string $expectedThrowableMessage ): void
 	{
-		return new JsonEncoderWithValidValuesDataProvider();
+		try
+		{
+			$jsonEncoder->encode( $invalidValue, $encoderOptions );
+		}
+		catch ( Throwable $throwable )
+		{
+			static::assertInstanceOf( JsonExceptionInterface::class, $throwable );
+			static::assertInstanceOf( $expectedThrowableClassName, $throwable );
+			static::assertSame(
+				$expectedThrowableCode,
+				$throwable->getCode()
+			);
+			static::assertSame(
+				$expectedThrowableMessage,
+				$throwable->getMessage()
+			);
+		}
 	}
 
 	/**
-	 * Tests if `JsonEncoderInterface::encode()` encodes correctly.
+	 * Tests if the method `JsonEncoderInterface::encode()` encodes correctly.
 	 * @param JsonEncoderInterface $jsonEncoder The JSON encoder to test.
-	 * @param mixed $value The value to encode.
-	 * @param ?JsonEncoderOptions $encoderOptions The encoding options of the encoder.
+	 * @param mixed $validValue The valid value to encode.
+	 * @param ?int $encoderOptions The encoder options of the encoder.
 	 * @param string $expectedEncodedValue The expected encoded value.
-	 * @dataProvider jsonEncoderWithValidValuesDataProvider
 	 */
-	public function testEncodeEncodesCorrectly( JsonEncoderInterface $jsonEncoder, $value, ?JsonEncoderOptions $encoderOptions, string $expectedEncodedValue ): void
+	#[DataProviderExternal( JsonEncodersWithValidValueEncoderOptionsAndExpectedEncodedValueDataProvider::class, 'provideData' )]
+	public function testIfMethodEncodeEncodesCorrectly( JsonEncoderInterface $jsonEncoder, mixed $validValue, ?int $encoderOptions, string $expectedEncodedValue ): void
 	{
-		$resultedEncodedValue = $jsonEncoder->encode( $value, $encoderOptions );
+		$resultedEncodedValue = $jsonEncoder->encode( $validValue, $encoderOptions );
 
-		$this->assertSame( $expectedEncodedValue, $resultedEncodedValue );
-	}
-
-	/**
-	 * Provides inititated JSON encoders with invalid values, options and expected exceptions.
-	 * @return ArrayIterator The inititated JSON encoders with invalid values, options and expected exceptions.
-	 */
-	public function jsonEncoderWithInvalidValuesDataProvider(): ArrayIterator
-	{
-		return new JsonEncoderWithInvalidValuesDataProvider();
-	}
-
-	/**
-	 * Tests if `JsonEncoderInterface::encode()` throws an exception if an error occurred during encoding.
-	 * @param JsonEncoderInterface $jsonEncoder The JSON encoder to test.
-	 * @param mixed $value The value to encode.
-	 * @param ?JsonEncoderOptions $encoderOptions The encoding options of the encoder.
-	 * @param string $expectedExceptionClassName The class name of the expected exception.
-	 * @param int $expectedExceptionCode The error code of the expected exception.
-	 * @param string $expectedExceptionMessage The error message of the expected exception.
-	 * @dataProvider jsonEncoderWithInvalidValuesDataProvider
-	 */
-	public function testEncodeThrowsExceptionOnError( JsonEncoderInterface $jsonEncoder, $value, ?JsonEncoderOptions $encoderOptions, string $expectedExceptionClassName, int $expectedExceptionCode, string $expectedExceptionMessage ): void
-	{
-		$this->expectException( $expectedExceptionClassName );
-		$this->expectExceptionCode( $expectedExceptionCode );
-		$this->expectExceptionMessage( $expectedExceptionMessage );
-
-		$jsonEncoder->encode( $value, $encoderOptions );
+		static::assertSame( $expectedEncodedValue, $resultedEncodedValue );
 	}
 }

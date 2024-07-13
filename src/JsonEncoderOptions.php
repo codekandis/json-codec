@@ -1,7 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\JsonCodec;
 
-use CodeKandis\Phlags\AbstractFlagable;
+use CodeKandis\Types\BaseObject;
 use const JSON_FORCE_OBJECT;
 use const JSON_HEX_AMP;
 use const JSON_HEX_APOS;
@@ -16,69 +16,69 @@ use const JSON_UNESCAPED_SLASHES;
 use const JSON_UNESCAPED_UNICODE;
 
 /**
- * Represents the available options for encoding a value into JSON.
+ * Represents the available options to encode a value into a JSON string.
  * @package codekandis/json-codec
  * @author Christian Ramelow <info@codekandis.net>
  */
-class JsonEncoderOptions extends AbstractFlagable
+abstract class JsonEncoderOptions extends BaseObject implements JsonEncoderOptionsInterface
 {
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-hex-tag
 	 */
-	public const HEX_TAG = JSON_HEX_TAG;
+	public const int HEX_TAG = JSON_HEX_TAG;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-hex-amp
 	 */
-	public const HEX_AMP = JSON_HEX_AMP;
+	public const int HEX_AMP = JSON_HEX_AMP;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-hex-apos
 	 */
-	public const HEX_APOS = JSON_HEX_APOS;
+	public const int HEX_APOS = JSON_HEX_APOS;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-hex-quot
 	 */
-	public const HEX_QUOT = JSON_HEX_QUOT;
+	public const int HEX_QUOT = JSON_HEX_QUOT;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-force-object
 	 */
-	public const FORCE_OBJECT = JSON_FORCE_OBJECT;
+	public const int FORCE_OBJECT = JSON_FORCE_OBJECT;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-numeric-check
 	 */
-	public const NUMERIC_CHECK = JSON_NUMERIC_CHECK;
+	public const int NUMERIC_CHECK = JSON_NUMERIC_CHECK;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-unescaped-slashes
 	 */
-	public const UNESCAPED_SLASHES = JSON_UNESCAPED_SLASHES;
+	public const int UNESCAPED_SLASHES = JSON_UNESCAPED_SLASHES;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-pretty-print
 	 */
-	public const PRETTY_PRINT = JSON_PRETTY_PRINT;
+	public const int PRETTY_PRINT = JSON_PRETTY_PRINT;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-unescaped-unicode
 	 */
-	public const UNESCAPED_UNICODE = JSON_UNESCAPED_UNICODE;
+	public const int UNESCAPED_UNICODE = JSON_UNESCAPED_UNICODE;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-partial-output-on-error
 	 */
-	public const PARTIAL_OUTPUT_ON_ERROR = JSON_PARTIAL_OUTPUT_ON_ERROR;
+	public const int PARTIAL_OUTPUT_ON_ERROR = JSON_PARTIAL_OUTPUT_ON_ERROR;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-preserve-zero-fraction
 	 */
-	public const PRESERVE_ZERO_FRACTION = JSON_PRESERVE_ZERO_FRACTION;
+	public const int PRESERVE_ZERO_FRACTION = JSON_PRESERVE_ZERO_FRACTION;
 
 	/**
 	 * @see https://www.php.net/manual/en/json.constants.php#constant.json-unescaped-line-terminators
 	 */
-	public const UNESCAPED_LINE_TERMINATORS = JSON_UNESCAPED_LINE_TERMINATORS;
+	public const int UNESCAPED_LINE_TERMINATORS = JSON_UNESCAPED_LINE_TERMINATORS;
 }
